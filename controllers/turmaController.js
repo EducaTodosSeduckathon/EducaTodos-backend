@@ -115,22 +115,10 @@ const getTurma = async (req, res) => {
  */
 const createTurma = async (req, res) => {
   try {
-    const { name, school_year, section, description } = req.body;
-
-    // Verificar se já existe turma com mesmo ano e seção
-    const existingTurma = await Turma.findOne({
-      where: { school_year, section },
-    });
-
-    if (existingTurma) {
-      return res.status(400).json(errorResponse('Já existe uma turma com este ano escolar e seção'));
-    }
+    const { name } = req.body;
 
     const turma = await Turma.create({
-      name,
-      school_year,
-      section,
-      description,
+      name
     });
 
     res.status(201).json(successResponse(turma, 'Turma criada com sucesso'));

@@ -19,7 +19,6 @@ router.use(authorizeTeacher);
 
 // ===== ROTAS DE DISCIPLINAS DO PROFESSOR =====
 
-/*
 router.get("/disciplinas", teacherDisciplinaController.listMyDisciplinas);
 router.get("/disciplinas/stats", teacherDisciplinaController.getMyDisciplinasStats);
 router.get("/disciplinas/:id", param("id").isInt().withMessage("ID deve ser um número"), handleValidationErrors, teacherDisciplinaController.getMyDisciplina);
@@ -121,7 +120,7 @@ router.delete("/questoes/:id", param("id").isInt().withMessage("ID deve ser um n
 // ===== ROTAS DE RESPOSTAS (VISUALIZAÇÃO) =====
 
 router.get("/questoes/:questao_id/respostas", param("questao_id").isInt().withMessage("ID da questão deve ser um número"), handleValidationErrors, questaoController.listRespostas);
-*/
+
 // Rota de teste
 router.get('/', (req, res) => {
   res.json({

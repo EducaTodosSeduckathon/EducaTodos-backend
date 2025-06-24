@@ -48,10 +48,10 @@ const Conteudo = sequelize.define('Conteudo', {
     type: DataTypes.STRING(500),
     allowNull: true,
   },
-  summary_file_type: {
-    type: DataTypes.ENUM('text', 'image', 'pdf', 'docx'),
-    allowNull: true,
-  },
+  // summary_file_type: {
+  //   type: DataTypes.ENUM('text', 'image', 'pdf', 'docx'),
+  //   allowNull: true,
+  // },
   // Resumos adaptados por IA para cada tipo de deficiência
   summary_visual: {
     type: DataTypes.TEXT,

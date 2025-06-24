@@ -24,16 +24,16 @@ router.use(authorizeManager);
 // Validações para turmas
 const turmaValidation = [
   body('name').notEmpty().withMessage('Nome é obrigatório').isLength({ max: 100 }).withMessage('Nome deve ter no máximo 100 caracteres'),
-  body('school_year').notEmpty().withMessage('Ano escolar é obrigatório'),
-  body('section').notEmpty().withMessage('Seção é obrigatória'),
-  body('description').optional().isLength({ max: 1000 }).withMessage('Descrição deve ter no máximo 1000 caracteres'),
+  // body('school_year').notEmpty().withMessage('Ano escolar é obrigatório'),
+  // body('section').notEmpty().withMessage('Seção é obrigatória'),
+  // body('description').optional().isLength({ max: 1000 }).withMessage('Descrição deve ter no máximo 1000 caracteres'),
 ];
 
 const turmaUpdateValidation = [
   body('name').optional().isLength({ max: 100 }).withMessage('Nome deve ter no máximo 100 caracteres'),
-  body('school_year').optional().notEmpty().withMessage('Ano escolar não pode estar vazio'),
-  body('section').optional().notEmpty().withMessage('Seção não pode estar vazia'),
-  body('description').optional().isLength({ max: 1000 }).withMessage('Descrição deve ter no máximo 1000 caracteres'),
+  // body('school_year').optional().notEmpty().withMessage('Ano escolar não pode estar vazio'),
+  // body('section').optional().notEmpty().withMessage('Seção não pode estar vazia'),
+  // body('description').optional().isLength({ max: 1000 }).withMessage('Descrição deve ter no máximo 1000 caracteres'),
   body('is_active').optional().isBoolean().withMessage('is_active deve ser boolean'),
 ];
 
@@ -50,20 +50,20 @@ const teacherValidation = [
   body('name').notEmpty().withMessage('Nome é obrigatório').isLength({ max: 100 }).withMessage('Nome deve ter no máximo 100 caracteres'),
   body('email').optional().isEmail().withMessage('Email deve ser válido').normalizeEmail(),
   body('password').notEmpty().withMessage('Senha é obrigatória').isLength({ min: 6 }).withMessage('Senha deve ter pelo menos 6 caracteres'),
-  body('phone').optional().isLength({ max: 20 }).withMessage('Telefone deve ter no máximo 20 caracteres'),
-  body('birth_date').optional().isDate().withMessage('Data de nascimento deve ser uma data válida'),
-  body('specialization').optional().isLength({ max: 200 }).withMessage('Especialização deve ter no máximo 200 caracteres'),
-  body('hire_date').optional().isDate().withMessage('Data de contratação deve ser uma data válida'),
+  // body('phone').optional().isLength({ max: 20 }).withMessage('Telefone deve ter no máximo 20 caracteres'),
+  // body('birth_date').optional().isDate().withMessage('Data de nascimento deve ser uma data válida'),
+  // body('specialization').optional().isLength({ max: 200 }).withMessage('Especialização deve ter no máximo 200 caracteres'),
+  // body('hire_date').optional().isDate().withMessage('Data de contratação deve ser uma data válida'),
 ];
 
 const teacherUpdateValidation = [
   body('name').optional().isLength({ max: 100 }).withMessage('Nome deve ter no máximo 100 caracteres'),
   body('email').optional().isEmail().withMessage('Email deve ser válido').normalizeEmail(),
-  body('phone').optional().isLength({ max: 20 }).withMessage('Telefone deve ter no máximo 20 caracteres'),
-  body('birth_date').optional().isDate().withMessage('Data de nascimento deve ser uma data válida'),
-  body('specialization').optional().isLength({ max: 200 }).withMessage('Especialização deve ter no máximo 200 caracteres'),
-  body('hire_date').optional().isDate().withMessage('Data de contratação deve ser uma data válida'),
-  body('is_active').optional().isBoolean().withMessage('is_active deve ser boolean'),
+  // body('phone').optional().isLength({ max: 20 }).withMessage('Telefone deve ter no máximo 20 caracteres'),
+  // body('birth_date').optional().isDate().withMessage('Data de nascimento deve ser uma data válida'),
+  // body('specialization').optional().isLength({ max: 200 }).withMessage('Especialização deve ter no máximo 200 caracteres'),
+  // body('hire_date').optional().isDate().withMessage('Data de contratação deve ser uma data válida'),
+  // body('is_active').optional().isBoolean().withMessage('is_active deve ser boolean'),
 ];
 
 router.get('/professores', teacherController.listTeachers);
@@ -81,7 +81,6 @@ const studentValidation = [
   body('ra').optional().isLength({ max: 20 }).withMessage('RA deve ter no máximo 20 caracteres'),
   body('turma_id').isInt().withMessage('ID da turma deve ser um número'),
   body('birth_date').isDate().withMessage('Data de nascimento é obrigatória e deve ser uma data válida'),
-  body('disability_type').optional().isIn(['none', 'visual', 'auditory', 'motor', 'intellectual']).withMessage('Tipo de deficiência inválido'),
   body('parent_name').notEmpty().withMessage('Nome do responsável é obrigatório'),
   body('parent_email').optional().isEmail().withMessage('Email do responsável deve ser válido').normalizeEmail(),
   body('parent_phone').optional().isLength({ max: 20 }).withMessage('Telefone do responsável deve ter no máximo 20 caracteres'),
@@ -95,7 +94,6 @@ const studentUpdateValidation = [
   body('ra').optional().isLength({ max: 20 }).withMessage('RA deve ter no máximo 20 caracteres'),
   body('turma_id').optional().isInt().withMessage('ID da turma deve ser um número'),
   body('birth_date').optional().isDate().withMessage('Data de nascimento deve ser uma data válida'),
-  body('disability_type').optional().isIn(['none', 'visual', 'auditory', 'motor', 'intellectual']).withMessage('Tipo de deficiência inválido'),
   body('is_active').optional().isBoolean().withMessage('is_active deve ser boolean'),
   body('parent_name').optional().notEmpty().withMessage('Nome do responsável não pode estar vazio'),
   body('parent_email').optional().isEmail().withMessage('Email do responsável deve ser válido').normalizeEmail(),

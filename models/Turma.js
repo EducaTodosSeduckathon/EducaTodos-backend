@@ -17,17 +17,11 @@ const Turma = sequelize.define('Turma', {
   },
   school_year: {
     type: DataTypes.STRING(10),
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true,
   },
   section: {
     type: DataTypes.STRING(10),
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true,
   },
   description: {
     type: DataTypes.TEXT,

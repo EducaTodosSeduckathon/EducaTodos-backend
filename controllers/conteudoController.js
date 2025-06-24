@@ -1,5 +1,5 @@
 const { successResponse, errorResponse } = require('../utils/helpers');
-const { Teacher, Disciplina, Conteudo, Material, Questao, Resposta, Student, User } = require('../models');
+const { Teacher, Disciplina, Turma, Conteudo, Material, Questao, Resposta, Student, User } = require('../models');
 const { processResumoComIA, processQuestoesComIA, extractTextFromFile, validateTextContent } = require('../utils/aiService');
 const { getFileInfo, deleteFile } = require('../middleware/upload');
 const { Op } = require('sequelize');
@@ -101,7 +101,7 @@ const listConteudos = async (req, res) => {
           total_questoes: conteudo.questoes.length,
           total_materials: conteudo.materials.length,
           total_respostas: totalRespostas,
-          has_summary: !!(conteudo.summary_text || conteudo.summary_file_path),
+          // has_summary: !!(conteudo.summary_text || conteudo.summary_file_path),
           created_at: conteudo.created_at,
           updated_at: conteudo.updated_at,
         };
@@ -258,7 +258,7 @@ const createConteudo = async (req, res) => {
       end_date,
       summary_text: extractedText,
       summary_file_path: summaryFilePath,
-      summary_file_type: summaryFileType,
+      // summary_file_type: summaryFileType,
       summary_visual: aiSummaries.visual,
       summary_auditory: aiSummaries.auditory,
       summary_motor: aiSummaries.motor,

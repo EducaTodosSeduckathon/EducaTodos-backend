@@ -11,15 +11,15 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING(100),
-        allowNull: false,
+        allowNull: true,
       },
       school_year: {
         type: Sequelize.STRING(10),
-        allowNull: false,
+        allowNull: true,
       },
       section: {
         type: Sequelize.STRING(10),
-        allowNull: false,
+        allowNull: true,
       },
       description: {
         type: Sequelize.TEXT,
