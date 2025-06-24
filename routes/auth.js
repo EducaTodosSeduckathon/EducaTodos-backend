@@ -11,10 +11,10 @@ const loginValidation = [
   body('role')
     .isIn(['manager', 'teacher', 'student', 'parent'])
     .withMessage('Função precisa ser válida'),
-  body('email')
-    .isEmail()
-    .withMessage('Email deve ser válido')
-    .normalizeEmail(),
+  body('email'),
+    // .isEmail()
+    // .withMessage('Email deve ser válido'),
+    // .normalizeEmail(),
   body('password')
     .notEmpty()
     .withMessage('Senha é obrigatória')

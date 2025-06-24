@@ -1,5 +1,6 @@
 const { comparePassword, generateToken, successResponse, errorResponse } = require('../utils/helpers');
 const { User, Student, Teacher, Manager, Parent, Turma } = require('../models');
+const { Op } = require('sequelize');
 
 /**
  * Login de usuário
@@ -9,9 +10,30 @@ const login = async (req, res) => {
     const { email, password, role } = req.body;
 
     // Buscar usuário por email
-    const user = await User.findOne({
-      where: { email, role, is_active: true },
-    });
+    let user = null;
+    if(role == 'student'){
+      user = await User.findOne({
+        where: {
+          role,
+          is_active: true,
+          [Op.or]: [
+            { email }, // verifica o email na própria tabela de usuários
+            { '$student.ra$': email } // verifica o RA na tabela student
+          ],
+        },
+        include: [
+          {
+            model: Student,
+            as: 'student', // nome do alias na relação
+            attributes: ['id', 'ra'], // você pode incluir mais se quiser
+          },
+        ],
+      });
+    }else{
+      user = await User.findOne({
+        where: { email, role, is_active: true },
+      });
+    }
 
     if (!user) {
       return res.status(401).json(errorResponse('Email ou senha inválidos'));

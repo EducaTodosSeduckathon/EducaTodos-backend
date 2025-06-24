@@ -25,7 +25,7 @@ app.use(helmet());
 app.use(cors({
   origin: '*', // Em produção, especificar domínios permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'accessibility-type'],
 }));
 
 // Middlewares para parsing

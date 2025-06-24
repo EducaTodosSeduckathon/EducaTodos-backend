@@ -1,5 +1,5 @@
 const { successResponse, errorResponse } = require('../utils/helpers');
-const { Student, Feedback } = require('../models');
+const { Student, Feedback, User } = require('../models');
 
 /**
  * Criar novo feedback ou denúncia

@@ -129,6 +129,7 @@ const listConteudos = async (req, res) => {
           progresso: totalQuestoes > 0 ? ((questoesRespondidas / totalQuestoes) * 100).toFixed(2) : 0,
           taxa_acerto: questoesRespondidas > 0 ? ((respostasCorretas / questoesRespondidas) * 100).toFixed(2) : 0,
           has_summary: !!(conteudo.summary_text || conteudo.summary_file_path),
+          disciplina,
           created_at: conteudo.created_at,
         };
       })
@@ -169,13 +170,6 @@ const getConteudo = async (req, res) => {
           model: Disciplina,
           as: 'disciplina',
           where: { turma_id: student.turma_id },
-          include: [
-            {
-              model: User,
-              as: 'teacher',
-              attributes: ['name'],
-            },
-          ],
         },
         {
           model: User,
@@ -191,8 +185,17 @@ const getConteudo = async (req, res) => {
 
     // Selecionar resumo adaptado baseado no tipo de deficiência do aluno
     let adaptedSummary = conteudo.summary_text;
+
+    const accessibilityType = (req.headers['accessibility-type'] || '').toLowerCase();
+
+    const alias = {
+      visual: 'visual',
+      auditiva: 'auditory',
+      motora: 'motor',
+      intelectual: 'intellectual' 
+    }
     
-    switch (student.disability_type) {
+    switch (alias[accessibilityType]) {
       case 'visual':
         adaptedSummary = conteudo.summary_visual || conteudo.summary_text;
         break;

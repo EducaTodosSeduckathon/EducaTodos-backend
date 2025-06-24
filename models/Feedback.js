@@ -52,6 +52,10 @@ const Feedback = sequelize.define('Feedback', {
     type: DataTypes.DATE,
     allowNull: true,
   },
+  created_at: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
   is_active: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
